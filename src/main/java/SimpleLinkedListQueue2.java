@@ -34,30 +34,30 @@ public class SimpleLinkedListQueue2<T extends Comparable<T>> {
         if (size == 0) {
             head = tail = new SimpleLinkedListNode(value);
         } else {
-            tail.next = new SimpleLinkedListNode(value);
-            tail = tail.next;
+            if (comparator.compare(value, head.value) < 0){
+                    SimpleLinkedListNode temp = head;
+                    head = new SimpleLinkedListNode(value);
+                    head.next = temp;
+            } else {
+                SimpleLinkedListNode current = head;
+                while (current.next != null) {
+                    if (comparator.compare(value, current.next.value) < 0) {
+                        SimpleLinkedListNode temp = current.next;
+                        current.next = new SimpleLinkedListNode(value);
+                        current.next.next = temp;
+                        break;
+                    }
+                    current = current.next;
+                }
+                if (current.next == null) {
+                    tail.next = new SimpleLinkedListNode(value);
+                    tail = tail.next;
+                }
+            }
         }
         size++;
-        sort(comparator);
     }
 
-    public void sort(Comparator<T> comparator){
-        SimpleLinkedListNode current = head;
-        T temp;
-
-        while(current != null) {
-            SimpleLinkedListNode next = current.next;
-            while (next != null) {
-                if (comparator.compare(current.value, next.value) > 0) {
-                    temp = current.value;
-                    current.value = next.value;
-                    next.value = temp;
-                }
-                next = next.next;
-            }
-            current = current.next;
-        }
-    }
 
     public T remove() throws Exception {
         T result = element();

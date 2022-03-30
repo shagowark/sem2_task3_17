@@ -25,7 +25,7 @@ class SimpleLinkedListQueue2Test {
 
     @Test
     void test2() throws Exception {
-        String[] str = {"abc", "gsdfsadassda", "faf", "b", "a"};
+        String[] str = {"gsdfsadassda", "b", "abc", "faf", "a"};
         String[] expected = {"gsdfsadassda", "abc", "faf","b", "a"};
         StringComparator comparator = new StringComparator();
         SimpleLinkedListQueue2<String> myQueue = new SimpleLinkedListQueue2<>(comparator);
@@ -43,7 +43,7 @@ class SimpleLinkedListQueue2Test {
     @Test
     void test3() throws Exception {
         String[] str = {"111", "aaa", "1234","1", "a"};
-        String[] expected = {"1234", "aaa", "111", "1", "a"};
+        String[] expected = {"1234", "111", "aaa", "1", "a"};
         StringComparator comparator = new StringComparator();
         SimpleLinkedListQueue2<String> myQueue = new SimpleLinkedListQueue2<>(comparator);
 
